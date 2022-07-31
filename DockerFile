@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD target/online-shop.jar online-shop.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar" , "online-shop.jar"]
