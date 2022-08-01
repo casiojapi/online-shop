@@ -1,24 +1,36 @@
-version: "3"
+version: '2.1'
+
 services:
-  springboot-app:
-    # container_name: spring-app
-    image: springbooot-app
+  #service 1: mysql database image creation
+  db:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=spring
+    ports:
+      - "3306:3306"
     restart: always
-    build: .
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+
+  # service 2: online store service
+  service:
+    image: service
+    container_name: service-app
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 8000-8999:8080
+      - "8080:8080"
+    restart: always
+
+    depends_on:
+      db :
+        condition: service_healthy
     environment:
-      MYSQL_HOST: mysqldb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_PORT: 3306
-  mysqldb:
-    container_name: mysqldb
-    image: mysql
-    volumes:
-      -  /home/user/Desktop/db:/var/lib/mysql
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_DATABASE: test
-      MYSQL_ROOT_PASSWORD: root
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/onlineshop?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: spring
