@@ -27,4 +27,10 @@ public class ExceptionControllerAdvice {
     public final ResponseEntity<String> handleCategoryDoesNotExistException(CategoryDoesNotExistException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = EmptyCartException.class)
+    public final ResponseEntity<String> handleEmptyCartException(EmptyCartException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }

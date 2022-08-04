@@ -23,7 +23,7 @@ public class ProductController {
     CategoryService categoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDTO productDTO) throws Exception {
+    public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDTO productDTO) {
         Category category = categoryService.findCategoryById(productDTO.getCategoryId());
         productService.createProduct(productDTO, category);
         return new ResponseEntity<>(new ApiResponse(true, "product created"), HttpStatus.CREATED);
@@ -35,7 +35,7 @@ public class ProductController {
     }
 
     @PostMapping("/update/{productId}")
-    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productId") Integer id, @RequestBody ProductDTO productDTO) throws Exception {
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productId") Integer id, @RequestBody ProductDTO productDTO) {
         Category category = categoryService.findCategoryById(productDTO.getCategoryId());
         productService.updateProduct(productDTO, id, category);
         return new ResponseEntity<>(new ApiResponse(true, "product updated"), HttpStatus.OK);

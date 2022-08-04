@@ -1,6 +1,6 @@
 package com.maximosan.onlineshop;
 
-import io.github.classgraph.Resource;
+import org.hibernate.annotations.SQLInsert;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

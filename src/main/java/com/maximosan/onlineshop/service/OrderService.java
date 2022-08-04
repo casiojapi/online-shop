@@ -4,6 +4,7 @@ import com.maximosan.onlineshop.dto.CartDTO;
 import com.maximosan.onlineshop.dto.CartItemDTO;
 import com.maximosan.onlineshop.dto.OrderDTO;
 import com.maximosan.onlineshop.dto.ProductDTO;
+import com.maximosan.onlineshop.exception.EmptyCartException;
 import com.maximosan.onlineshop.exception.OrderDoesNotExistException;
 import com.maximosan.onlineshop.model.Order;
 import com.maximosan.onlineshop.model.Product;
@@ -28,10 +29,15 @@ public class OrderService {
     OrderRepository orderRepository;
 
     public OrderDTO createOrderFromCart(CartDTO cartDTO) {
+        if (cartDTO.getCartItems().isEmpty()) {
+            throw new EmptyCartException("you cannot place an order if your cart is empty.");
+        }
+
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setPayed(false);
         orderDTO.setPrice(cartDTO.getTotalCost());
         orderDTO.setCreationDate(LocalDate.now());
+
 
         ArrayList<Integer> orderItemsIds = new ArrayList<>();
 
@@ -80,7 +86,6 @@ public class OrderService {
 
     public ArrayList<ProductDTO> buildListFromOrder(OrderDTO orderDTO) {
         ArrayList<ProductDTO> productList = new ArrayList<>();
-
         for (Integer productId: orderDTO.getOrderItemsIds()) {
             Product prod = productService.findProductById(productId);
             ProductDTO prodDTO = productService.getProductDTOFromProduct(prod);

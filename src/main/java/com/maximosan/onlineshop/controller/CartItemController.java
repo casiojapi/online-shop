@@ -30,7 +30,7 @@ public class CartItemController {
     @DeleteMapping("/clean")
     public ResponseEntity<ApiResponse> cleanCart() {
         cartItemService.cleanCart();
-        return new ResponseEntity<>(new ApiResponse(true, "OK, your cart is now empty."), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(true, "your cart is now empty."), HttpStatus.OK);
     }
 
 

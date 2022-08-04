@@ -19,7 +19,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(getApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("maximosan.onlineshop"))
+                .apis(RequestHandlerSelectors.basePackage("com.maximosan.onlineshop"))
                 .paths(PathSelectors.any())
                 .build();
     }

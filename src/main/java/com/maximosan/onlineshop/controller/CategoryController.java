@@ -3,6 +3,7 @@ package com.maximosan.onlineshop.controller;
 import com.maximosan.onlineshop.common.ApiResponse;
 import com.maximosan.onlineshop.model.Category;
 import com.maximosan.onlineshop.service.CategoryService;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,8 @@ public class CategoryController {
     }
 
     @GetMapping()
-    public List<Category> getCategories() {
-        return categoryService.getCategories();
+    public ResponseEntity<List<Category>> getCategories() {
+        return new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
     }
 
     @PostMapping("/update/{category_id}")
