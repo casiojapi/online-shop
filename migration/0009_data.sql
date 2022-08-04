@@ -1,10 +1,3 @@
-INSERT INTO `categories` VALUES (1,'a'),(2,'b'),(3,'c'),(4,'d'),(5,'a'),(6,'a'),(7,'b'),(8,'c'),(9,'d'),(10,'a'),(11, 'a');
 
-
-
-
-
-
-INSERT INTO `products` VALUES (1,'updated.com','ddd',_binary '',11,-10000,3);
---INSERT INTO `order_products` VALUES (1,2),(1,3),(1,5),(2,5),(2,2),(2,2),(3,2),(3,1),(3,5),(4,2),(4,1),(4,5),(5,5),(5,1),(5,1);
---INSERT INTO `orders` VALUES (1,'2022-07-30',_binary '\0',11),(2,'2022-07-30',_binary '\0',19),(3,'2022-07-30',_binary '\0',21),(4,'2022-07-30',_binary '\0',21),(5,'2022-07-30',_binary '\0',23);
+INSERT INTO `categories` VALUES (1,'videos'),(2,'photos'),(3,'toys'),(4,'clothes'),(5,'cars'),(6,'mugs'),(7,'books'),(8,'electronics'),(9,'ebooks'),(10,'cards');
+INSERT INTO `products` VALUES (1,'updated.com','toyota',1,110000, 3600,5),(2,'updated.com','star wars',0,60,0,1),(3,'updated.com','coffee mug',1,10,2,6),(4,'updated.com','ferrari',1,500000,10000,5),(5,'updated.com','bitcoin',0,24000,0,3),(6,'updated.com','go lang course',0,60,0,1),(7,'updated.com','mac m1',1,1000,3,8),(8,'updated.com','chevrolet',1,110000, 3600,5),(9,'updated.com','blade runner',0,60,0,1),(10,'updated.com','tea mug',1,10,2,6),(11,'updated.com','lexus',1,500000,10000,5),(12,'updated.com','eth',0,24000,0,3),(13,'updated.com','sql course',0,60,0,1),(14,'updated.com','lenovo',1,1000,3,8),(15,'updated.com','ford',1,110000, 3600,5),(16,'updated.com','indiana jones',0,60,0,1),(17,'updated.com','bowl',1,10,2,6),(18,'updated.com','vento',1,500000,10000,5),(19,'updated.com','monero',0,24000,0,3),(20,'updated.com','spring boot course',0,60,0,1),(21,'updated.com','acer',1,1000,3,8),(22,'updated.com','gol',1,110000, 3600,5),(23,'updated.com','one punch',0,60,0,1),(24,'updated.com','tea',1,10,2,6),(25,'updated.com','lambo',1,500000,10000,5);
