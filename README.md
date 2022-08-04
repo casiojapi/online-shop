@@ -13,12 +13,14 @@ Using Java Spring Boot, MySQL, Swagger Documentation and containerization with d
 + Clone/Download the repository.
 
 
-+ Open MySql (port:3306) 
++ Open MySql (port: 3306) 
 
- -- _if you have to use another port, change "spring.datasource.url=" on application properties to point to the desired port_.
+ _if you have to use another port, change "spring.datasource.url=" on application properties to point to the desired port_.
+
+**
+_(this is just for making sure you can compile the project, then we will use docker to build the proper MySql-db container and the properties for the db url will update automatically)_ **
 
 
-(this is just for making sure you can compile the project, then we will use docker to build the proper MySql-db container and the properties for the db url will update automatically)
 
 + Open the terminal and generate the executable .jar file for the application using Maven.
 
@@ -30,7 +32,7 @@ Using Java Spring Boot, MySQL, Swagger Documentation and containerization with d
 + Now build the Service and DB containers, running:
 
 
-    $ docker-compose up -d --build
+    $ docker-compose up --build
 
 + Now, your application should be running on port: 8080. Docker will automatically build your service and MySql DB containers. Initializing the db with a fixture (which is on ./migrations/init.sql) with some sample data in order to test the APIs.
 
