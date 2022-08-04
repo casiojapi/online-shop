@@ -15,9 +15,7 @@ services:
       - MYSQL_USER=spring
       - MYSQL_PASSWORD=spring
     volumes:
-#      - data_volume:/var/lib/mysql
-  #    - "./migration/0000_create_database.sql:/docker-entrypoint-initdb.d/0000_create_database.sql"
-      - "./migration/1_init.sql:/docker-entrypoint-initdb.d/1_init.sql"
+      - "./migration/init.sql:/docker-entrypoint-initdb.d/init.sql"
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
@@ -29,8 +27,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-#    volumes:
-#      - ./migration/0009_data.sql:/usr/init-data/0009_data.sql
     ports:
       - "8080:8080"
     restart: always
@@ -42,6 +38,5 @@ services:
       SPRING_DATASOURCE_USERNAME: spring
       SPRING_DATASOURCE_PASSWORD: spring
       SPRINT_DATASOURCE_INITIALIZATION-MODE: always
-      SPRING_DATASOURCE_DATA: /usr/init-data/0009_data.sql
       SPRING_DATA_JPA-DATASOURCE-INITIALIZATION: true
       SPRING_SQL_INIT_MODE: always
