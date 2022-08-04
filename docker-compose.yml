@@ -3,10 +3,10 @@ version: '2.1'
 services:
   #service 1: mysql database image creation
   db:
-    image: mysql:5.7.6
+    image: arm64v8/mysql
     container_name: mysql-db
     ports:
-      - "3307:3307"
+      - "3306:3306"
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -16,7 +16,8 @@ services:
       - MYSQL_PASSWORD=spring
     volumes:
 #      - data_volume:/var/lib/mysql
-      - ./migration:/docker-entrypoint-initdb.d
+  #    - "./migration/0000_create_database.sql:/docker-entrypoint-initdb.d/0000_create_database.sql"
+      - "./migration/1_init.sql:/docker-entrypoint-initdb.d/1_init.sql"
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
@@ -29,7 +30,7 @@ services:
       context: .
       dockerfile: Dockerfile
 #    volumes:
-#      - ./migration:/usr/init-data/
+#      - ./migration/0009_data.sql:/usr/init-data/0009_data.sql
     ports:
       - "8080:8080"
     restart: always
@@ -41,6 +42,6 @@ services:
       SPRING_DATASOURCE_USERNAME: spring
       SPRING_DATASOURCE_PASSWORD: spring
       SPRINT_DATASOURCE_INITIALIZATION-MODE: always
-      SPRING_DATASOURCE_DATA: /usr/init-data/data.sql
+      SPRING_DATASOURCE_DATA: /usr/init-data/0009_data.sql
       SPRING_DATA_JPA-DATASOURCE-INITIALIZATION: true
       SPRING_SQL_INIT_MODE: always
